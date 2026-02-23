@@ -1,0 +1,19 @@
+/* --- Light Mode --- */
+:root {
+    /* Backgrounds */
+    /* --background: #dcdce0;
+    --second-bg-color: #e6e6fa; */
+    --background: #ececfc;
+    --second-bg-color: #ffffff;
+    /* Keep for solid uses if any */
+
+    /* Glassmorphism (Light) - 50% White (Reverted by user request) */
+    --glass-bg: rgba(255, 255, 255, 0.5);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --glass-blur: 10px;
+
+    /* Colors */
+    --foreground: #000011;
+    --main-color: #008f24;
+    --gradient-second: #b8ac00;
+}

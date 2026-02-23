@@ -1,0 +1,396 @@
+/* ===========================
+   Container & Header
+=========================== */
+.container {
+    position: relative;
+    width: 100%;
+}
+
+.header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    text-shadow: 0 0 15px var(--main-color);
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.dragHint {
+    font-size: clamp(0.78rem, 2vw, 0.95rem);
+    color: var(--main-color);
+    opacity: 0.7;
+    font-family: monospace;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    user-select: none;
+}
+
+/* ===========================
+   3D Carousel
+=========================== */
+.carouselContainer {
+    position: relative;
+    width: 100%;
+    height: 540px;
+    perspective: 1200px;
+    margin: 20px 0 0;
+    overflow: visible;
+    touch-action: pan-y;
+    /* allow vertical scroll, capture horizontal for drag */
+}
+
+/* JS drives the transform — NO animation: here */
+.carousel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-style: preserve-3d;
+    transform: translate(-50%, -50%) rotateX(-10deg) rotateY(0deg);
+    width: 0;
+    height: 0;
+    cursor: grab;
+}
+
+.carousel:active {
+    cursor: grabbing;
+}
+
+/* Card base */
+.card {
+    position: absolute;
+    width: 220px;
+    height: 260px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    box-shadow: 0 0 20px var(--main-color);
+    transition: box-shadow 0.4s, background 0.4s;
+    top: 0;
+    left: 0;
+    margin-left: -110px;
+    margin-top: -130px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+}
+
+.card:hover {
+    box-shadow: 0 0 45px var(--main-color);
+    z-index: 10;
+}
+
+/* Image layer */
+.imageContainer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.projectImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.card:hover .projectImage {
+    transform: scale(1.08);
+}
+
+/* Text overlay */
+.cardContent {
+    position: relative;
+    z-index: 2;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    text-align: center;
+}
+
+.card h3 {
+    margin: 0 0 8px;
+    color: var(--main-color);
+    font-size: 1.05rem;
+    font-weight: bold;
+    text-shadow: 0 0 6px var(--main-color);
+}
+
+.card p {
+    font-size: 0.82rem;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+/* ===========================
+   Shared Utilities
+=========================== */
+.stack {
+    font-size: 0.76rem;
+    opacity: 0.75;
+    font-family: monospace;
+    color: var(--main-color);
+    margin-top: auto;
+}
+
+.projectLink {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--second-bg-color);
+    background-color: var(--main-color);
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-top: 10px;
+    transition: all 0.3s;
+    box-shadow: 0 0 10px var(--main-color);
+}
+
+.projectLink:hover {
+    background-color: var(--foreground);
+    color: var(--main-color);
+}
+
+/* ===========================
+   Bottom "Other Projects" Grid
+=========================== */
+.bottomProjects {
+    padding: 40px 0;
+    margin-top: 100px;
+    border-top: 1px solid var(--glass-border);
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.noteBlock {
+    margin-bottom: 32px;
+    padding: 20px;
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    box-shadow: 0 0 20px var(--main-color);
+    text-align: center;
+}
+
+.noteBlock h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    margin-bottom: 8px;
+    color: var(--main-color);
+}
+
+.noteBlock p {
+    color: var(--foreground);
+    opacity: 0.8;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+    padding: 0 4px;
+}
+
+.gridCard {
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    min-height: 260px;
+}
+
+.gridCard>h3,
+.gridCard>p,
+.gridCard>.stack,
+.gridCard>.projectLink {
+    position: relative;
+    z-index: 2;
+    margin-left: 18px;
+    margin-right: 18px;
+}
+
+.gridCard>h3 {
+    margin-top: auto;
+    padding-top: 14px;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    font-size: 1rem;
+}
+
+.gridCard>p {
+    color: #eee;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    margin-bottom: 8px;
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.gridCard>.stack {
+    opacity: 0.9;
+    color: var(--main-color);
+}
+
+.gridCard>.projectLink {
+    margin-bottom: 18px;
+    margin-top: 8px;
+    align-self: flex-start;
+}
+
+.gridImageContainer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.gridImageContainer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 40%, transparent);
+    z-index: 1;
+}
+
+.gridCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 28px var(--main-color);
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+/* Large tablet */
+@media (max-width: 1100px) {
+    .carouselContainer {
+        height: 480px;
+    }
+
+    .card {
+        width: 190px;
+        height: 230px;
+        margin-left: -95px;
+        margin-top: -115px;
+    }
+
+    .card h3 {
+        font-size: 0.95rem;
+    }
+
+    .card p {
+        font-size: 0.78rem;
+    }
+}
+
+/* Tablet / large phone */
+@media (max-width: 768px) {
+    .carouselContainer {
+        height: 420px;
+    }
+
+    .card {
+        width: 160px;
+        height: 200px;
+        margin-left: -80px;
+        margin-top: -100px;
+    }
+
+    .card h3 {
+        font-size: 0.88rem;
+    }
+
+    .card p {
+        font-size: 0.72rem;
+    }
+
+    .bottomProjects {
+        margin-top: 60px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .carouselContainer {
+        height: 380px;
+    }
+
+    .card {
+        width: 140px;
+        height: 175px;
+        margin-left: -70px;
+        margin-top: -87px;
+        border-radius: 14px;
+    }
+
+    .card h3 {
+        font-size: 0.8rem;
+        margin-bottom: 4px;
+    }
+
+    .card p {
+        font-size: 0.66rem;
+        margin-bottom: 4px;
+    }
+
+    .cardContent {
+        padding: 10px;
+    }
+
+    .projectLink {
+        font-size: 0.68rem;
+        padding: 4px 10px;
+    }
+
+    .header {
+        padding: 20px 12px 10px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .bottomProjects {
+        margin-top: 40px;
+        padding: 24px 0;
+    }
+}
+
+/* Very small (≤360px) */
+@media (max-width: 360px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

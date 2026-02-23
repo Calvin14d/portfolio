@@ -1,0 +1,16 @@
+/* --- Dark Mode --- */
+.dark {
+    /* Backgrounds */
+    --background: #000011;
+    --second-bg-color: #111122;
+
+    /* Glassmorphism (Dark) - Dark transparency */
+    --glass-bg: rgba(0, 0, 0, 0.6);
+    --glass-border: var(--main-color);
+    --glass-blur: 6px;
+
+    /* Colors */
+    --foreground: #ffffff;
+    --main-color: #00ff41;
+    --gradient-second: #ffed00;
+}
