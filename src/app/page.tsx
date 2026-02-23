@@ -161,7 +161,7 @@ export default function Home() {
         </section>
 
         <footer className="relative w-full py-6 text-center text-xl text-[var(--foreground)]/70 bg-[var(--second-bg-color)] z-50 border-t border-[var(--main-color)]">
-          &copy; 2024 CODE MONARCH. All rights reserved.
+          &copy; 2026 CODE MONARCH. All rights reserved.
         </footer>
       </div>
     </main>
