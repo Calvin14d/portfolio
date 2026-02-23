@@ -88,7 +88,7 @@ export default function Contact() {
                         <span className="text-3xl text-[var(--main-color)] mt-1">📍</span>
                         <div className="text-lg text-[var(--foreground)]">
                             <strong className="block mb-1">Address:</strong>
-                            P.O. Box 1208-60100, Embu.
+                            P.O. Box 2508-60100, Embu.
                         </div>
                     </div>
 
