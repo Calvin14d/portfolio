@@ -13,12 +13,15 @@ import { useEffect, useRef, useState } from 'react';
 import Typed from 'typed.js';
 import { useTheme } from 'next-themes';
 
+const isProd = process.env.NODE_ENV === 'production';
+const base = isProd ? '/portfolio' : '';
+
 // Generate the 51 image paths for Dark Mode
 const darkFrameCount = 51;
 const darkImages = Array.from({ length: darkFrameCount }, (_, i) => {
   const index = i + 1;
   const id = index.toString().padStart(3, '0');
-  return `/dark_animated_laptop/ezgif-frame-${id}.jpg`;
+  return `${base}/dark_animated_laptop/ezgif-frame-${id}.jpg`;
 });
 
 // Generate the 51 image paths for Light Mode
@@ -26,7 +29,7 @@ const lightFrameCount = 51;
 const lightImages = Array.from({ length: lightFrameCount }, (_, i) => {
   const index = i + 1;
   const id = index.toString().padStart(3, '0');
-  return `/light_animated_laptop/ezgif-frame-${id}.jpg`;
+  return `${base}/light_animated_laptop/ezgif-frame-${id}.jpg`;
 });
 
 export default function Home() {
@@ -117,7 +120,7 @@ export default function Home() {
               </a>
             </div>
 
-            <a href="/resume.pdf" download className="inline-block px-12 py-4 bg-[var(--main-color)] text-[var(--background)] border-2 border-[var(--main-color)] rounded-full text-xl font-semibold transition-all duration-300 hover:shadow-[0_0_20px_var(--main-color)]">
+            <a href={`${base}/resume.pdf`} download className="inline-block px-12 py-4 bg-[var(--main-color)] text-[var(--background)] border-2 border-[var(--main-color)] rounded-full text-xl font-semibold transition-all duration-300 hover:shadow-[0_0_20px_var(--main-color)]">
               Resume
             </a>
           </div>
@@ -126,7 +129,7 @@ export default function Home() {
           <div className="flex-1 flex justify-center items-center">
             <div className="w-[25vw] h-[30vw] min-w-[220px] min-h-[220px] bg-[var(--second-bg-color)]/50 overflow-hidden relative animate-morph border-4 border-[var(--main-color)] flex items-center justify-center">
               <img
-                src="/profile_photo/profile_photo.png"
+                src={`${base}/profile_photo/profile_photo.png`}
                 alt="Code Monarch Profile"
                 className="w-full h-full object-cover"
               />

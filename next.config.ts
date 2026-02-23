@@ -1,11 +1,12 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig: NextConfig = {
   output: 'export',
-  // Change this to your repository name if it's not 'portfolio'
-  // If you use username.github.io, you can set this to empty string ''
-  basePath: '/portfolio',
-  assetPrefix: '/portfolio',
+  // Only use the /portfolio prefix in production (GitHub Pages)
+  basePath: isProd ? '/portfolio' : '',
+  assetPrefix: isProd ? '/portfolio/' : '',
   images: {
     unoptimized: true,
   },

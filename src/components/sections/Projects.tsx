@@ -3,23 +3,26 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import styles from './Projects.module.css';
 
+const isProd = process.env.NODE_ENV === 'production';
+const base = isProd ? '/portfolio' : '';
+
 const projects = [
-    { title: "AI Security Analyzer", desc: "Analyzes system vulnerabilities using AI.", stack: "Python, TensorFlow", link: "#", image: "/img/projects/ai_sec.jpg" },
-    { title: "Network Visualizer", desc: "3D real-time network mapping.", stack: "Three.js, Node", link: "#", image: "/img/projects/net_vis.jpg" },
-    { title: "Encryption Dashboard", desc: "Secure data encryption interface.", stack: "React, CryptoJS", link: "#", image: "/img/projects/enc_dash.jpg" },
-    { title: "Packet Monitor", desc: "Real-time packet tracking tool.", stack: "Python, Scapy", link: "#", image: "/img/projects/packet_mon.jpg" },
-    { title: "Secure Chat App", desc: "End-to-end encrypted messaging.", stack: "Socket.io, Node", link: "#", image: "/img/projects/chat_app.jpg" },
-    { title: "Auth System", desc: "Multi-layer authentication engine.", stack: "Next.js, JWT", link: "#", image: "/img/projects/auth_sys.jpg" },
-    { title: "Malware Detector", desc: "Detects suspicious software behavior.", stack: "Python", link: "#", image: "/img/projects/malware_det.jpg" },
-    { title: "Threat Dashboard", desc: "Live cyber threat analytics.", stack: "Vue, D3.js", link: "#", image: "/img/projects/threat_dash.jpg" },
-    { title: "Password Vault", desc: "Encrypted credential storage.", stack: "Electron, SQLite", link: "#", image: "/img/projects/pass_vault.JPG" },
-    { title: "Log Analyzer", desc: "Server log anomaly detection.", stack: "Python", link: "#", image: "/img/projects/landing.jpg" },
+    { title: "AI Security Analyzer", desc: "Analyzes system vulnerabilities using AI.", stack: "Python, TensorFlow", link: "#", image: `${base}/img/projects/ai_sec.jpg` },
+    { title: "Network Visualizer", desc: "3D real-time network mapping.", stack: "Three.js, Node", link: "#", image: `${base}/img/projects/net_vis.jpg` },
+    { title: "Encryption Dashboard", desc: "Secure data encryption interface.", stack: "React, CryptoJS", link: "#", image: `${base}/img/projects/enc_dash.jpg` },
+    { title: "Packet Monitor", desc: "Real-time packet tracking tool.", stack: "Python, Scapy", link: "#", image: `${base}/img/projects/packet_mon.jpg` },
+    { title: "Secure Chat App", desc: "End-to-end encrypted messaging.", stack: "Socket.io, Node", link: "#", image: `${base}/img/projects/chat_app.jpg` },
+    { title: "Auth System", desc: "Multi-layer authentication engine.", stack: "Next.js, JWT", link: "#", image: `${base}/img/projects/auth_sys.jpg` },
+    { title: "Malware Detector", desc: "Detects suspicious software behavior.", stack: "Python", link: "#", image: `${base}/img/projects/malware_det.jpg` },
+    { title: "Threat Dashboard", desc: "Live cyber threat analytics.", stack: "Vue, D3.js", link: "#", image: `${base}/img/projects/threat_dash.jpg` },
+    { title: "Password Vault", desc: "Encrypted credential storage.", stack: "Electron, SQLite", link: "#", image: `${base}/img/projects/pass_vault.JPG` },
+    { title: "Log Analyzer", desc: "Server log anomaly detection.", stack: "Python", link: "#", image: `${base}/img/projects/landing.jpg` },
 ];
 
 const others = [
-    { title: "Portfolio Site", desc: "Personal portfolio.", stack: "Next.js", link: "#", image: "/img/projects/portfolio.jpg" },
-    { title: "Landing Page", desc: "Modern UI landing page.", stack: "HTML, CSS", link: "#", image: "/img/projects/landing.JPG" },
-    { title: "Task Manager", desc: "Track daily work.", stack: "React", link: "#", image: "/img/projects/task_mgr.jpg" },
+    { title: "Portfolio Site", desc: "Personal portfolio.", stack: "Next.js", link: "#", image: `${base}/img/projects/portfolio.jpg` },
+    { title: "Landing Page", desc: "Modern UI landing page.", stack: "HTML, CSS", link: "#", image: `${base}/img/projects/landing.JPG` },
+    { title: "Task Manager", desc: "Track daily work.", stack: "React", link: "#", image: `${base}/img/projects/task_mgr.jpg` },
 ];
 
 /**
