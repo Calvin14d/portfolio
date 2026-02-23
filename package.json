@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "predeploy": "npm run build && touch out/.nojekyll || echo > out/.nojekyll",
+    "predeploy": "npm run build && npx -y touch-cli out/.nojekyll",
     "deploy": "gh-pages -d out",
     "start": "next start",
     "lint": "eslint"
